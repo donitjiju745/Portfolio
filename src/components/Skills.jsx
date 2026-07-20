@@ -1,80 +1,81 @@
-import { motion } from "framer-motion";
-import { Terminal, Layers, BrainCircuit } from "lucide-react";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Terminal, Layers, Brain, ChevronRight } from 'lucide-react';
 
-const CATEGORIES = [
-  {
-    icon: Terminal,
-    label: "languages",
-    items: ["Python", "Java", "JavaScript / TypeScript", "SQL"],
-  },
-  {
-    icon: Layers,
-    label: "frameworks--libraries",
-    items: ["FastAPI", "React", "LangChain", "Streamlit", "PyTorch / XGBoost"],
-  },
-  {
-    icon: BrainCircuit,
-    label: "core-domains",
-    items: [
-      "AI/ML Architectures",
-      "Natural Language Processing",
-      "Signal Processing (EEG)",
-      "Speech (Whisper)",
-      "Vector Search (FAISS)",
-    ],
-  },
-];
-
-const cardVariant = {
-  hidden: { opacity: 0, y: 20 },
-  show: (i) => ({
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
     opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
-  }),
+    transition: { staggerChildren: 0.2 }
+  }
 };
 
-export default function Skills() {
-  return (
-    <section id="skills" className="px-6 py-24 sm:py-28 border-t border-border">
-      <div className="max-w-5xl mx-auto">
-        <p className="font-mono text-sm text-signal mb-3">02 — capabilities</p>
-        <h2 className="font-display font-600 text-3xl sm:text-4xl mb-14">
-          Core Skills
-        </h2>
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+};
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {CATEGORIES.map(({ icon: Icon, label, items }, i) => (
-            <motion.div
-              key={label}
-              variants={cardVariant}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-60px" }}
-              custom={i}
-              className="rounded-lg border border-border bg-surface p-6 hover:border-signal/40 transition-colors duration-300"
-            >
-              <div className="flex items-center gap-2.5 mb-5">
-                <Icon size={18} className="text-signal" />
-                <span className="font-mono text-xs text-muted">
-                  ~/{label}
-                </span>
-              </div>
-              <ul className="space-y-2.5">
-                {items.map((item) => (
-                  <li
-                    key={item}
-                    className="text-ink text-[15px] flex items-baseline gap-2"
-                  >
-                    <span className="text-amber font-mono text-xs">›</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+const Skills = () => {
+  return (
+    <section className="py-24 bg-[#0f1014] text-white px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-12">
+          <p className="text-[#42d392] font-mono text-sm mb-2">02 — capabilities</p>
+          <h2 className="text-4xl font-bold">Core Skills</h2>
         </div>
+
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {/* Languages Card */}
+          <motion.div variants={cardVariants} className="bg-[#15161b] border border-gray-800 p-8 rounded-lg hover:border-[#42d392] transition-colors duration-300">
+            <h3 className="text-gray-300 font-mono text-sm mb-6 flex items-center">
+              <Terminal className="w-5 h-5 text-[#42d392] mr-2" /> ~/Languages
+            </h3>
+            <ul className="space-y-4 text-gray-400">
+              {['Python', 'Java', 'JavaScript / TypeScript', 'SQL'].map((skill) => (
+                <li key={skill} className="flex items-center">
+                  <ChevronRight className="w-4 h-4 text-gray-600 mr-2" /> {skill}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Frameworks Card */}
+          <motion.div variants={cardVariants} className="bg-[#15161b] border border-gray-800 p-8 rounded-lg hover:border-[#42d392] transition-colors duration-300">
+            <h3 className="text-gray-300 font-mono text-sm mb-6 flex items-center">
+              <Layers className="w-5 h-5 text-[#42d392] mr-2" /> ~/Frameworks--Libraries
+            </h3>
+            <ul className="space-y-4 text-gray-400">
+              {['FastAPI', 'React', 'LangChain', 'Streamlit', 'PyTorch / XGBoost'].map((skill) => (
+                <li key={skill} className="flex items-center">
+                  <ChevronRight className="w-4 h-4 text-gray-600 mr-2" /> {skill}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Core Domains Card */}
+          <motion.div variants={cardVariants} className="bg-[#15161b] border border-gray-800 p-8 rounded-lg hover:border-[#42d392] transition-colors duration-300">
+            <h3 className="text-gray-300 font-mono text-sm mb-6 flex items-center">
+              <Brain className="w-5 h-5 text-[#42d392] mr-2" /> ~/Core-Domains
+            </h3>
+            <ul className="space-y-4 text-gray-400">
+              {['AI/ML Architectures', 'Natural Language Processing', 'Signal Processing (EEG)', 'Speech (Whisper)', 'Vector Search (FAISS)'].map((skill) => (
+                <li key={skill} className="flex items-center">
+                  <ChevronRight className="w-4 h-4 text-gray-600 mr-2" /> {skill}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
-}
+};
+
+export default Skills;

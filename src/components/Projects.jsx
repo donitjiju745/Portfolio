@@ -1,114 +1,101 @@
-import { motion } from "framer-motion";
-import { Github, ExternalLink, FileText } from "lucide-react";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Github, ExternalLink, FileText } from 'lucide-react';
 
-const PROJECTS = [
-  {
-    title: "VoyageIQ",
-    kind: "Full-Stack Application",
-    stack: ["FastAPI", "React", "NLP Pipeline"],
-    summary:
-      "A conversational travel assistant with intent detection, NER, and sentiment analysis wired into a full-stack monolithic app.",
-    links: { github: "#", demo: "#" },
-  },
-  {
-    title: "EEG Seizure Detection System",
-    kind: "ML / Signal Processing",
-    stack: ["XGBoost", "Streamlit", "CHB-MIT Dataset"],
-    summary:
-      "Classifies seizure activity from raw EEG signals, turning noisy time-series waveforms into a real-time clinical-style dashboard.",
-    links: { github: "#", demo: "#" },
-  },
-  {
-    title: "Kannada Legal AI Assistant",
-    kind: "Academic Research Survey",
-    stack: ["XLM-RoBERTa", "MuRIL", "IEEE Paper"],
-    summary:
-      "IEEE research tackling the English-as-Pivot Gap in low-resource legal NLP, enabling legal Q&A natively in Kannada.",
-    links: { github: "#", demo: "#" },
-  },
-];
-
-const cardVariant = {
-  hidden: { opacity: 0, y: 24 },
-  show: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
-  }),
-};
-
-export default function Projects() {
+const Projects = () => {
   return (
-    <section
-      id="projects"
-      className="px-6 py-24 sm:py-28 border-t border-border"
-    >
-      <div className="max-w-5xl mx-auto">
-        <p className="font-mono text-sm text-signal mb-3">
-          03 — selected-work
-        </p>
-        <h2 className="font-display font-600 text-3xl sm:text-4xl mb-14">
-          Featured Projects &amp; Research
-        </h2>
+    <section className="py-24 bg-[#0a0a0a] text-white px-6 border-t border-gray-900">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-12">
+          <p className="text-[#42d392] font-mono text-sm mb-2">03 — selected-work</p>
+          <h2 className="text-4xl font-bold">Featured Projects & Research</h2>
+        </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {PROJECTS.map((project, i) => (
-            <motion.article
-              key={project.title}
-              variants={cardVariant}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-60px" }}
-              custom={i}
-              className="group flex flex-col rounded-lg border border-border bg-surface p-6 hover:bg-surface2 hover:border-signal/40 transition-colors duration-300"
-            >
-              <span className="font-mono text-[11px] uppercase tracking-wide text-amber mb-3">
-                {project.kind}
-              </span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          {/* VoyageIQ */}
+          <motion.div 
+            whileHover={{ y: -8, boxShadow: "0px 10px 30px rgba(66,211,146,0.1)" }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="bg-[#15161b] border border-gray-800 rounded-lg p-8 flex flex-col"
+          >
+            <p className="text-[#f08d49] font-mono text-xs uppercase tracking-widest mb-4">Full-Stack Application</p>
+            <h3 className="text-2xl font-bold mb-4">VoyageIQ</h3>
+            <p className="text-gray-400 mb-8 flex-grow leading-relaxed">
+              A conversational travel assistant with intent detection, NER, and sentiment analysis wired into a full-stack monolithic app.
+            </p>
+            <div className="flex flex-wrap gap-2 mb-8">
+              {['FastAPI', 'React', 'NLP Pipeline'].map(tag => (
+                <span key={tag} className="px-3 py-1 border border-gray-700 text-gray-300 text-xs rounded font-mono">{tag}</span>
+              ))}
+            </div>
+            <div className="flex gap-6 border-t border-gray-800 pt-6">
+              <a href="#" className="text-gray-400 hover:text-[#42d392] flex items-center text-sm transition-colors">
+                <Github className="w-4 h-4 mr-2" /> Code
+              </a>
+              <a href="#" className="text-gray-400 hover:text-[#42d392] flex items-center text-sm transition-colors">
+                <ExternalLink className="w-4 h-4 mr-2" /> Live Demo
+              </a>
+            </div>
+          </motion.div>
 
-              <h3 className="font-display font-600 text-lg text-ink mb-3">
-                {project.title}
-              </h3>
+          {/* EEG Seizure Detection */}
+          <motion.div 
+            whileHover={{ y: -8, boxShadow: "0px 10px 30px rgba(66,211,146,0.1)" }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="bg-[#15161b] border border-gray-800 rounded-lg p-8 flex flex-col relative overflow-hidden"
+          >
+            <div className="absolute top-0 left-0 w-full h-1 bg-[#42d392] opacity-50"></div>
+            <p className="text-[#f08d49] font-mono text-xs uppercase tracking-widest mb-4">ML / Signal Processing</p>
+            <h3 className="text-2xl font-bold mb-4">EEG Seizure Detection System</h3>
+            <p className="text-gray-400 mb-8 flex-grow leading-relaxed">
+              Classifies seizure activity from raw EEG signals, turning noisy time-series waveforms into a real-time clinical-style dashboard.
+            </p>
+            <div className="flex flex-wrap gap-2 mb-8">
+              {['XGBoost', 'Streamlit', 'CHB-MIT Dataset'].map(tag => (
+                <span key={tag} className="px-3 py-1 border border-gray-700 text-gray-300 text-xs rounded font-mono">{tag}</span>
+              ))}
+            </div>
+            <div className="flex gap-6 border-t border-gray-800 pt-6">
+              <a href="#" className="text-gray-400 hover:text-[#42d392] flex items-center text-sm transition-colors">
+                <Github className="w-4 h-4 mr-2" /> Code
+              </a>
+              <a href="#" className="text-gray-400 hover:text-[#42d392] flex items-center text-sm transition-colors">
+                <ExternalLink className="w-4 h-4 mr-2" /> Live Demo
+              </a>
+            </div>
+          </motion.div>
 
-              <p className="text-muted text-sm leading-relaxed mb-5 flex-1">
-                {project.summary}
-              </p>
+          {/* Kannada Legal AI */}
+          <motion.div 
+            whileHover={{ y: -8, boxShadow: "0px 10px 30px rgba(66,211,146,0.1)" }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="bg-[#15161b] border border-gray-800 rounded-lg p-8 flex flex-col"
+          >
+            <p className="text-[#f08d49] font-mono text-xs uppercase tracking-widest mb-4">Academic Research Survey</p>
+            <h3 className="text-2xl font-bold mb-4">Kannada Legal AI Assistant</h3>
+            <p className="text-gray-400 mb-8 flex-grow leading-relaxed">
+              IEEE research tackling the English-as-Pivot Gap in low-resource legal NLP, enabling legal Q&A natively in Kannada.
+            </p>
+            <div className="flex flex-wrap gap-2 mb-8">
+              {['XLM-RoBERTa', 'MuRIL', 'IEEE Paper'].map(tag => (
+                <span key={tag} className="px-3 py-1 border border-gray-700 text-gray-300 text-xs rounded font-mono">{tag}</span>
+              ))}
+            </div>
+            <div className="flex gap-6 border-t border-gray-800 pt-6">
+              <a href="#" className="text-gray-400 hover:text-[#42d392] flex items-center text-sm transition-colors">
+                <Github className="w-4 h-4 mr-2" /> Code
+              </a>
+              <a href="#" className="text-gray-400 hover:text-[#42d392] flex items-center text-sm transition-colors">
+                <FileText className="w-4 h-4 mr-2" /> Paper
+              </a>
+            </div>
+          </motion.div>
 
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="font-mono text-[11px] px-2 py-1 rounded border border-border text-muted"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex items-center gap-3 pt-4 border-t border-border">
-                <a
-                  href={project.links.github}
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-muted hover:text-signal transition-colors duration-200"
-                >
-                  <Github size={14} />
-                  Code
-                </a>
-                <a
-                  href={project.links.demo}
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-muted hover:text-signal transition-colors duration-200"
-                >
-                  {project.kind.includes("Research") ? (
-                    <FileText size={14} />
-                  ) : (
-                    <ExternalLink size={14} />
-                  )}
-                  {project.kind.includes("Research") ? "Paper" : "Live Demo"}
-                </a>
-              </div>
-            </motion.article>
-          ))}
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default Projects;

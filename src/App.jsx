@@ -1,15 +1,18 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Footer from "./components/Footer";
+import React from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Logs from './components/Logs';
+import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Footer from './components/Footer';
 
-export default function App() {
+function App() {
   return (
-    <div className="bg-base text-ink min-h-screen">
+    <div className="min-h-screen bg-[#0f1014] text-white selection:bg-[#42d392] selection:text-black">
       <Navbar />
       <main>
         <Hero />
+        <Logs />
         <Skills />
         <Projects />
       </main>
@@ -17,3 +20,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;

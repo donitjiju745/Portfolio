@@ -1,66 +1,89 @@
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 
-const LINKS = [
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
-];
+const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  // Handle transparent to solid background transition on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Logs', href: '#logs' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Contact', href: '#contact' },
+  ];
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-base/70 border-b border-border">
-      <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a
-          href="#top"
-          className="font-mono text-sm text-signal tracking-tight"
-        >
-          donit<span className="text-muted">.dev</span>
+    <header 
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-[#0f1014]/90 backdrop-blur-md border-b border-gray-900 py-4' : 'bg-transparent py-6'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        
+        {/* Logo */}
+        <a href="/" className="text-xl font-mono tracking-tighter hover:opacity-80 transition-opacity">
+          
         </a>
 
-        {/* Desktop links */}
-        <ul className="hidden sm:flex items-center gap-8 font-mono text-sm text-muted">
-          {LINKS.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="hover:text-ink transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            </li>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex space-x-8">
+          {navLinks.map((link) => (
+            <a 
+              key={link.name}
+              href={link.href} 
+              className="text-gray-400 font-mono text-sm hover:text-[#42d392] transition-colors"
+            >
+              {link.name}
+            </a>
           ))}
-        </ul>
+        </nav>
 
-        {/* Mobile toggle */}
-        <button
-          className="sm:hidden text-ink"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
+        {/* Mobile Menu Button */}
+        <button 
+          className="md:hidden text-gray-400 hover:text-white transition-colors"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
-      </nav>
 
-      {/* Mobile menu */}
-      {open && (
-        <ul className="sm:hidden flex flex-col gap-1 px-6 pb-4 font-mono text-sm text-muted border-t border-border bg-base">
-          {LINKS.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="block py-3 hover:text-ink transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
+      </div>
+
+      {/* Mobile Navigation Dropdown */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-full left-0 w-full bg-[#15161b] border-b border-gray-800 shadow-2xl md:hidden"
+          >
+            <div className="flex flex-col px-6 py-4 space-y-4">
+              {navLinks.map((link) => (
+                <a 
+                  key={link.name}
+                  href={link.href} 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-gray-300 font-mono text-sm hover:text-[#42d392] transition-colors block py-2 border-b border-gray-800 last:border-none"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
-}
+};
+
+export default Navbar;
