@@ -1,50 +1,85 @@
+
 import React from 'react';
-import { Mail, Github } from 'lucide-react';
+import {
+  Mail,
+  Github,
+  ArrowUpRight,
+} from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
   return (
-    <footer className="py-24 bg-[#0f1014] text-center px-6">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
+    <footer
+      id="contact"
+      className="border-t border-gray-900 bg-[#0f1014] px-6 py-24 text-center"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.55 }}
         viewport={{ once: true }}
-        className="max-w-3xl mx-auto flex flex-col items-center"
+        className="mx-auto flex max-w-3xl flex-col items-center"
       >
-        <p className="text-[#42d392] font-mono text-sm mb-4">04 — get-in-touch</p>
-        <h2 className="text-5xl font-bold text-white mb-6 leading-tight">
-          Let’s build something worth training on.
-        </h2>
-        <p className="text-gray-400 mb-12 max-w-xl leading-relaxed">
-          Open to conversations on AI/ML roles, research collaborations, or anything at the intersection of language and machine learning.
+        <p className="mb-4 font-mono text-sm text-[#42d392]">
+          04 — get-in-touch
         </p>
 
-        {/* Email Link */}
-        <a 
-          href="mailto:donitjiju745@gmail.com" 
-          className="text-[#42d392] font-mono text-lg border-b border-[#42d392] pb-1 mb-12 hover:text-white hover:border-white transition-colors flex items-center group"
+        <h2 className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl">
+          Have an idea worth exploring?
+        </h2>
+
+        <p className="mb-10 max-w-xl leading-relaxed text-gray-400">
+          I'm happy to connect about NLP, Generative AI, language
+          technologies, learning opportunities, or an interesting
+          problem that deserves a closer look.
+        </p>
+
+        <a
+          href="mailto:donitjiju745@gmail.com"
+          className="mb-10 inline-flex items-center border-b border-[#42d392] pb-2 font-mono text-base text-[#42d392] transition-colors hover:border-white hover:text-white sm:text-lg"
         >
-          <Mail className="w-5 h-5 mr-3 group-hover:animate-pulse" /> donitjiju745@gmail.com
+          <Mail
+            className="mr-3 h-5 w-5"
+            aria-hidden="true"
+          />
+          donitjiju745@gmail.com
         </a>
 
-        {/* Social Links - ONLY GITHUB */}
-        <div className="flex justify-center mb-20">
-          <motion.a 
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            href="https://github.com/your-username" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="w-12 h-12 border border-gray-700 rounded flex items-center justify-center text-gray-400 hover:text-white hover:border-white hover:bg-gray-800 transition-colors"
-            aria-label="GitHub"
+        <div className="mb-16 flex items-center justify-center gap-3">
+          <motion.a
+            whileHover={{ y: -3 }}
+            whileTap={{ scale: 0.96 }}
+            href="https://github.com/donitjiju745"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Visit Donit Jiju on GitHub"
+            className="flex h-12 w-12 items-center justify-center rounded border border-gray-700 text-gray-400 transition-colors hover:border-[#42d392] hover:bg-[#42d392]/10 hover:text-[#42d392]"
           >
-            <Github className="w-5 h-5" />
+            <Github
+              className="h-5 w-5"
+              aria-hidden="true"
+            />
+          </motion.a>
+
+          <motion.a
+            whileHover={{ y: -3 }}
+            whileTap={{ scale: 0.96 }}
+            href="https://donitjiju.vercel.app"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Visit portfolio website"
+            className="flex h-12 w-12 items-center justify-center rounded border border-gray-700 text-gray-400 transition-colors hover:border-[#f08d49] hover:bg-[#f08d49]/10 hover:text-[#f08d49]"
+          >
+            <ArrowUpRight
+              className="h-5 w-5"
+              aria-hidden="true"
+            />
           </motion.a>
         </div>
 
-        <p className="text-gray-600 font-mono text-xs">
-          © 2026 — Built with React, Tailwind CSS & Framer Motion.
+        <p className="font-mono text-xs text-gray-600">
+          © {new Date().getFullYear()} · Built with React,
+          Tailwind CSS &amp; Framer Motion.
         </p>
       </motion.div>
     </footer>

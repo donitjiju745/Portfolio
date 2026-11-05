@@ -1,88 +1,120 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Download } from 'lucide-react';
-import Waveform from './Waveform'; // Assumes you have this component
+import { ArrowDown, Download, Sparkles } from 'lucide-react';
+import Waveform from './Waveform';
 
 const Hero = () => {
   return (
-    <section className="relative w-full min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
-      {/* Background Waveform */}
-      <div className="absolute top-1/4 left-0 w-full opacity-50 pointer-events-none">
+    <section
+      id="home"
+      className="relative flex min-h-screen w-full items-center overflow-hidden pb-12 pt-28"
+    >
+      <div
+        className="pointer-events-none absolute left-0 top-1/4 w-full opacity-40"
+        aria-hidden="true"
+      >
         <Waveform />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
-        
-        {/* Left Column: Text & Bio */}
-        <motion.div 
-          initial={{ opacity: 0, x: -30 }}
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 md:grid-cols-2">
+        <motion.div
+          initial={{ opacity: 0, x: -24 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.65 }}
           className="flex flex-col space-y-6"
         >
-          <div className="space-y-2">
-            <p className="text-[#42d392] font-mono text-sm tracking-wide">
+          <div className="space-y-3">
+            <p className="font-mono text-sm tracking-wide text-[#42d392]">
               Hi, I'm Donit Jiju.
             </p>
-            <p className="text-gray-400 font-mono text-sm uppercase tracking-widest">
-              AI/ML Engineer & Full-Stack Developer
+
+            <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-gray-400 sm:text-sm">
+              <Sparkles
+                className="h-4 w-4 shrink-0 text-[#f08d49]"
+                aria-hidden="true"
+              />
+              Aspiring NLP &amp; Generative AI Engineer
             </p>
           </div>
 
-          <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
-            Building intelligent systems at the intersection of <br />
-            <span className="text-[#42d392]">machine learning</span>, <br />
-            
-            <span className="relative group cursor-help text-[#f08d49]">
-              language
-              <div className="absolute left-0 bottom-full mb-3 hidden group-hover:block w-72 p-4 bg-gray-900 border border-gray-700 text-sm text-gray-200 rounded-lg shadow-2xl z-50 transition-opacity">
-                <strong className="text-white block mb-1">Low-Resource NLP</strong>
-                Building Pragmatic Reasoning systems for Kannada within the legal domain.
-              </div>
-            </span>, and{' '}
-            
-            <span className="relative group cursor-help text-[#42d392]">
-              signal
-              <div className="absolute left-0 bottom-full mb-3 hidden group-hover:block w-72 p-4 bg-gray-900 border border-gray-700 text-sm text-gray-200 rounded-lg shadow-2xl z-50 transition-opacity">
-                <strong className="text-white block mb-1">Medical Signal Processing</strong>
-                Developing EEG Seizure Detection architectures using the CHB-MIT dataset.
-              </div>
-            </span>.
+          <h1 className="text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
+            Curious about
+            <span className="text-[#42d392]"> language.</span>
+            <br />
+            Learning to connect
+            <br />
+            <span className="text-[#f08d49]">knowledge</span> with meaning.
           </h1>
 
-          <p className="text-gray-400 text-lg max-w-lg leading-relaxed">
-            Final-year AI & ML engineer focused on building applied, end-to-end systems. 
-            Comfortable across the stack: model architecture, backend services, and the interfaces that make them usable.
+          <p className="max-w-xl text-base leading-8 text-gray-400 sm:text-lg">
+            I'm a final-year B.E. student in Artificial Intelligence
+            and Machine Learning, exploring how machines process
+            language, retrieve useful information, and generate
+            meaningful responses. My projects span chatbots,
+            text analytics, topic modelling, and applied machine
+            learning—each one a chance to learn by building.
           </p>
 
-          <div className="flex items-center space-x-6 pt-4">
-            <button className="bg-[#42d392] hover:bg-[#33a06f] text-gray-900 font-semibold py-3 px-6 rounded transition-all duration-300 flex items-center group shadow-[0_0_15px_rgba(66,211,146,0.3)]">
-              View My Work 
-              <ArrowDown className="ml-2 w-5 h-5 transform group-hover:translate-y-1 transition-transform" />
-            </button>
-            <button className="border border-gray-600 hover:border-gray-400 text-white py-3 px-6 rounded flex items-center transition-colors">
-              <Download className="mr-2 w-5 h-5" /> Download Resume
-            </button>
+          <div className="flex flex-wrap items-center gap-4 pt-2">
+            <a
+              href="#projects"
+              className="group inline-flex items-center rounded bg-[#42d392] px-6 py-3 font-semibold text-[#0a0a0a] shadow-[0_0_18px_rgba(66,211,146,0.22)] transition-colors hover:bg-[#65e5aa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#42d392]"
+            >
+              Explore My Projects
+              <ArrowDown
+                className="ml-2 h-5 w-5 transition-transform group-hover:translate-y-1"
+                aria-hidden="true"
+              />
+            </a>
+
+            <a
+              href="/resume.pdf"
+              download
+              className="inline-flex items-center rounded border border-gray-700 px-5 py-3 text-gray-200 transition-colors hover:border-gray-500 hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#42d392]"
+            >
+              <Download
+                className="mr-2 h-5 w-5"
+                aria-hidden="true"
+              />
+              Download Resume
+            </a>
           </div>
+
+          <p className="font-mono text-xs leading-6 tracking-wide text-gray-500">
+            One idea at a time. One experiment at a time.
+            Always curious.
+          </p>
         </motion.div>
 
-        {/* Right Column: Profile Photo */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
           className="flex justify-center md:justify-end"
         >
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#42d392] to-[#f08d49] rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-            <img 
-              src="/profile.jpg" 
-              alt="Donit Jiju" 
-              className="relative w-72 h-72 object-cover rounded-full border-2 border-gray-800 shadow-2xl"
+          <div className="group relative">
+            <div
+              className="absolute -inset-2 rounded-full bg-gradient-to-r from-[#42d392] to-[#f08d49] opacity-20 blur-xl transition-opacity duration-500 group-hover:opacity-40"
+              aria-hidden="true"
             />
+
+            <img
+              src="/profile.jpg"
+              alt="Portrait of Donit Jiju"
+              className="relative h-60 w-60 rounded-full border-2 border-gray-800 object-cover shadow-2xl sm:h-72 sm:w-72"
+              loading="eager"
+            />
+
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-gray-700 bg-[#15161b] px-4 py-2 font-mono text-xs text-gray-300 shadow-xl">
+              curiosity
+              <span className="text-[#42d392]"> → </span>
+              experiments
+              <span className="text-[#f08d49]"> → </span>
+              learning
+            </div>
           </div>
         </motion.div>
-        
       </div>
     </section>
   );
